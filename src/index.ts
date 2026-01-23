@@ -1,7 +1,22 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
+import { openapi } from "@elysiajs/openapi";
+import z from "zod";
+import { EventRoutes } from './routes/EventRoutes';
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+const app = new Elysia()
+  .use(
+    openapi({
+      mapJsonSchema: {
+        zod: z.toJSONSchema,
+      },
+      path: "/docs",
+    })
+  )
+  .use(EventRoutes.createUserRoute)
+  .use(EventRoutes.getAllEventsRoutes)
+  .listen(3000)
+
+  
+console.log("Servidor on em http://localhost:3000");
+
