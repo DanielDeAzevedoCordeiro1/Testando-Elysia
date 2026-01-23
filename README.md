@@ -39,7 +39,7 @@ Acesse a docs gerada no endpoint
 http://localhost:3000/docs
 ```
 
-![Docs via OpenApi](Screenshot_2026-01-23_17-30-22.png)
+![Docs via OpenApi](assets/Screenshot_2026-01-23_17-30-22.png)
 
 ## Importante 
 
