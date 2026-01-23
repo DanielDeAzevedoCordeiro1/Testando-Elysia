@@ -18,7 +18,7 @@ git clone https://github.com/DanielDeAzevedoCordeiro1/Testando-Elysia.git
 Entre na pasta do projeto
 
 ```bash
-cd events-api
+cd Testando-elysia
 ```
 
 Instale as dependencias
