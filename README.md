@@ -70,7 +70,7 @@ Rode o executavel
 Gere uma imagem na raiz do projeto rodando:
 
 ```bash
-docker build -t "nome-da-imagem"
+docker build -t "nome-da-imagem ."
 ```
 
 Suba seu container com a imagem criada:
