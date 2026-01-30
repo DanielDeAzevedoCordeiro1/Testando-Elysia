@@ -7,13 +7,17 @@ import { GetAllEventsController } from "../controller/events/GetAllEventsControl
 import { t } from 'elysia';
 import { Events } from '../domain/Event';
 import { MemoryDb } from '../db/MemoryDb';
+import { DeleteEventByIdHandlerImpl } from '../handlers/events/impl/DeleteEventByIdHandlerImpl';
+import { DeleteEventByIdController } from '../controller/events/DeleteEventByIdController';
 
 
 const database = new MemoryDb()
 const createEventHandler = new CreateEventHandlerImpl(database);
+const deleteEventByIdHandler = new DeleteEventByIdHandlerImpl(database);
 const getAllEventsHandler = new GetAllEventsHandlerImpl(database);
 const createEventController = new CreateEventController(createEventHandler);
 const getAllEventsController = new GetAllEventsController(getAllEventsHandler);
+const deleteEventByIdController = new DeleteEventByIdController(deleteEventByIdHandler);
 
 
 
@@ -60,7 +64,26 @@ const getAllEventsRoutes = new Elysia({prefix: "/api/events"})
         }
     );
 
+const deleteEventByIdRoute = new Elysia({prefix: "/api/events"})
+    .delete(
+        "/:eventId",
+        async ({ params }) => {
+            const result = await deleteEventByIdController.handle(params.eventId);
+            return {
+                data: result
+            } as ApiResponse<string>;
+        },
+        {
+            detail: {
+                summary: "Deletar evento por ID",
+                description: "Deleta um evento específico do sistema usando seu ID",
+                tags: ["Eventos"],
+            }
+        }
+    );
+
 export const EventRoutes = {
     createUserRoute,
-    getAllEventsRoutes
+    getAllEventsRoutes,
+    deleteEventByIdRoute
 };
