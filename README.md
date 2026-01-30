@@ -1,6 +1,6 @@
 # Testando Elysia em uma simples API de Eventos
 
-## Se trata de uma API que disponibiliza dois endpoints um para criar e outro para listar eventos a principio.
+## Se trata de uma API que disponibiliza tres endpoints um para criar , outro para listar eventos e para deletar um evento.
 
 # Tecnologias Usadas:
 
