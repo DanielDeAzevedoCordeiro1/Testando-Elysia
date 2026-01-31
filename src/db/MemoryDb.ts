@@ -1,4 +1,4 @@
-import { EventData, Events} from "../domain/Event";
+import { EventData, Events} from '../domain/Event';
 import { EventRepository } from "../repositories/EventRepository";
 import { MemoryDatabase } from './schema/MemoryDatabase';
 
@@ -39,5 +39,18 @@ export class MemoryDb implements EventRepository {
             return true;
         }
         return false;
+    }
+
+    async alterEvent(eventId: string, updates: EventData): Promise<boolean> {
+        const event = await this.getEventById(eventId);
+        if (!event) {
+            return false;
+        }
+
+        const updatedEvent = { ...event, ...updates };
+        const index = this.banco.db.findIndex(e => e.id === eventId);
+        this.banco.db[index] = updatedEvent;
+
+        return true;
     }
 }

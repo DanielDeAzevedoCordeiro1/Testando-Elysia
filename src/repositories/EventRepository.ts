@@ -5,4 +5,5 @@ export interface EventRepository{
     getEventById(eventId: string): Promise<Events | null>;
     createEvent(event: EventData): Promise<Events>;
     deleteEvent(eventId: string): Promise<boolean>;
+    alterEvent(eventId: string, updates: Partial<EventData>): Promise<boolean>;
 }

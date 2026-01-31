@@ -1,4 +1,5 @@
 export type EventData = Omit<Events, "id" | "isProcessed">;
+export type EventDataWithStatus = Omit<Events, "id">;
 
 export interface Events {
     id: string;
