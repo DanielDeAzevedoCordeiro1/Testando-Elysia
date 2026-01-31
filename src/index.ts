@@ -16,6 +16,7 @@ const app = new Elysia()
   .use(EventRoutes.createUserRoute)
   .use(EventRoutes.getAllEventsRoutes)
   .use(EventRoutes.deleteEventByIdRoute)
+  .use(EventRoutes.alterEventRoute)
   .listen(3000)
 
   
